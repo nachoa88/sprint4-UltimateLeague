@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
+use App\Models\Game;
 use Illuminate\Http\Request;
 
-class TeamsController extends Controller
+class GameController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Team::all() gets all the teams from the database.
-        $allTeams = Team::all();
-        return view('teams', ['teams' => $allTeams]);
+        // Game::all() gets all the teams from the database.
+        $allGames = Game::all();
+        return view('teams', ['teams' => $allGames]);
     }
 
     /**
@@ -36,7 +36,7 @@ class TeamsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Team $game)
+    public function show(Game $game)
     {
         //
     }
@@ -44,7 +44,7 @@ class TeamsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Team $game)
+    public function edit(Game $game)
     {
         //
     }
@@ -52,7 +52,7 @@ class TeamsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Team $game)
+    public function update(Request $request, Game $game)
     {
         //
     }
@@ -60,7 +60,7 @@ class TeamsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Team $game)
+    public function destroy(Game $game)
     {
         //
     }
