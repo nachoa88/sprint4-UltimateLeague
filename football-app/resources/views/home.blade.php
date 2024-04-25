@@ -7,7 +7,9 @@
 
 
 <h1>Testing routes</h1>
-<a class="nav-link" href="{{ route('other') }}">Other Route</a>
+<a class="nav-link" href="/teams">Teams Route</a>
+<a class="nav-link" href="/games">Games Route</a>
+
 
 
 @endsection
