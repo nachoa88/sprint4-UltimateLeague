@@ -7,60 +7,41 @@ use Illuminate\Http\Request;
 
 class TeamsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         // Team::all() gets all the teams from the database.
-        $allTeams = Team::all();
-        return view('teams', ['teams' => $allTeams]);
+        $teams = Team::all();
+        // For example we'll sort the teams by name.
+        $teams = $teams->sortBy('name');
+        return view('teams', ['teams' => $teams]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Team $game)
+    public function show(Team $team)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Team $game)
+    public function edit(Team $team)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Team $game)
+    public function update(Request $request, Team $team)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Team $game)
+    public function destroy(Team $team)
     {
         //
     }
