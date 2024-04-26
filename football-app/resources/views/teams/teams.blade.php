@@ -2,14 +2,14 @@
 
 @section('content')
     <h1 class="mt-8 pt-2 text-2xl font-bold text-blue-600">Create a Team</h1>
-    <p class="mt-2 mb-4">Do you want to create a new team? With Football APP is possible, just press the button and follow
+    <p class="mt-2 mb-4 text-black dark:text-white">Do you want to create a new team? With Football APP is possible, just press the button and follow
         the instructions.</p>
     <a href="{{ route('teams.create') }}"
         class="mt-4 bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">Create a Team</a>
 
     <h1 class="mt-16 text-2xl font-bold text-blue-600">Teams List</h1>
 
-    <table class="table-auto w-full mt-4 mb-16 text-left">
+    <table class="table-auto w-full mt-4 mb-16 text-left text-black dark:text-white">
         <thead>
             <tr>
                 <th class="px-4 py-2">Logo</th>
