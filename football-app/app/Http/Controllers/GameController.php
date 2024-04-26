@@ -13,8 +13,8 @@ class GameController extends Controller
     public function index()
     {
         // Game::all() gets all the teams from the database.
-        $allGames = Game::all();
-        return view('teams', ['teams' => $allGames]);
+        $games = Game::all();
+        return view('games', ['games' => $games]);
     }
 
     /**
