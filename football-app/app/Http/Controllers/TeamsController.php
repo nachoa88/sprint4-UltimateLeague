@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTeamRequest;
 
@@ -22,6 +22,7 @@ class TeamsController extends Controller
 
     public function create()
     {
+        // Just show the create view, then store will be called.
         return view('teams.create');
     }
 
@@ -49,12 +50,24 @@ class TeamsController extends Controller
 
     public function edit(Team $team)
     {
-        //
+        // Edit will show the edit view with the team data, then update will be called.
+        return view('teams.edit', ['team' => $team]);
     }
 
-    public function update(Request $request, Team $team)
+    public function update(StoreTeamRequest $request, Team $team)
     {
-        //
+        $data = $request->validated();
+    
+        if($request->hasFile('logo')) {
+            // Delete the old logo
+            Storage::disk('public')->delete($team->logo);
+            // Store the new logo
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+    
+        $team->update($data);
+    
+        return redirect()->route('teams.index');
     }
 
     public function destroy(Team $team)

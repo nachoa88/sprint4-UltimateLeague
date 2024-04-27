@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class StoreTeamRequest extends FormRequest
 {
@@ -22,11 +24,15 @@ class StoreTeamRequest extends FormRequest
      */
     public function rules(): array
     {
+        // The teamId is used to ignore the current team when updating it, if not it will always return a unique error.
+        $teamId = $this->route('team') ? $this->route('team')->id : null;
+
         return [
-            'name' => 'required|unique:teams',
+            // The name must be unique in the teams table, but we need to ignore the current team when updating it.
+            'name' => ['required', Rule::unique('teams')->ignore($teamId)],
             'city' => 'required',
             'league' => 'required',
-            'logo' => 'required|image|max:500',
+            'logo' => 'image|max:500',
         ];
     }
 
