@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTeamRequest;
 
 
@@ -29,15 +30,15 @@ class TeamsController extends Controller
     {
         // ->validated() will validate the incoming request with the rules specified in the StoreTeamRequest class.
         $data = $request->validated();
-        
-        if($request->hasFile('logo')) {
+
+        if ($request->hasFile('logo')) {
             // The file is stored in the public disk.
             $data['logo'] = $request->file('logo')->store('logos', 'public');
         }
-        
+
         // Create a new team with the data from the form.
         Team::create($data);
-        
+
         return redirect()->route('teams.index');
     }
 
@@ -58,6 +59,11 @@ class TeamsController extends Controller
 
     public function destroy(Team $team)
     {
-        //
+        // Delete the logo file in the storage folder associated with the team.
+        Storage::disk('public')->delete($team->logo);
+        // ->delete() is the function associated with destroying a model instance.
+        $team->delete();
+
+        return redirect()->route('teams.index');
     }
 }

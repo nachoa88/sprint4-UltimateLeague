@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('city');
             $table->string('league');
-            $table->string('logo', 255)->nullable();
+            $table->string('logo', 255);
             $table->timestamps();
         });
     }
