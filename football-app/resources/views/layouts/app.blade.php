@@ -60,7 +60,7 @@
     </header>
 
 
-    <div class="container mx-auto px-4 max-w-screen-lg dark bg-gray-200">
+    <div class="container mx-auto px-4 max-w-screen-lg bg-gray-200 dark:bg-gray-900">
 
         @yield('content')
 
