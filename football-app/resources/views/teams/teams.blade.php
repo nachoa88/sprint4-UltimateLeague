@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="mt-8 pt-2 text-2xl font-bold text-blue-600">Create a Team</h1>
+    <h1 class="mb-6 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
+        Get started creating a <span class="text-teal-300">New Team</span></h1>
     <p class="mt-2 mb-4 text-black dark:text-white">Do you want to create a new team? With Football APP is possible, just
         press the button and follow
         the instructions.</p>
