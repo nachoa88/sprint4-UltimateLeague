@@ -24,7 +24,7 @@
                 <tr>
                     <td class="border px-4 py-2">
                         @if ($team->logo)
-                            <img src="" alt="{{ $team->name }} logo" class="w-16">
+                            <img src="{{ asset('storage/' . $team->logo) }}" alt="{{ $team->name }} logo" class="w-16">
                         @else
                             No logo
                         @endif

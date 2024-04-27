@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTeamRequest;
+
 
 class TeamsController extends Controller
 {
@@ -23,11 +25,19 @@ class TeamsController extends Controller
     }
 
     // POST calls the store method.
-    public function store(Request $request)
+    public function store(StoreTeamRequest $request)
     {
-        // ->all() to get all the fields from the form, it will get pnly the fields that are in the fillable array in the Team model.
-        Team::create($request->all());
-
+        // ->validated() will validate the incoming request with the rules specified in the StoreTeamRequest class.
+        $data = $request->validated();
+        
+        if($request->hasFile('logo')) {
+            // The file is stored in the public disk.
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+        
+        // Create a new team with the data from the form.
+        Team::create($data);
+        
         return redirect()->route('teams.index');
     }
 
