@@ -1,44 +1,79 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="mt-8 pt-2 text-2xl font-bold text-blue-600">Create a Team</h1>
-    <p class="mt-2 mb-4 text-black dark:text-white">Do you want to create a new team? With Football APP is possible, just
-        press the button and follow
-        the instructions.</p>
+    <h1 class="mb-6 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
+        Get started creating a <span class="text-teal-300">New Team</span></h1>
+    <p class="text-lg font-normal text-gray-200 lg:text-xl">Do you want to create a new team? With League Manager is
+        possible, just press the button and follow the instructions.</p>
     <a href="{{ route('teams.create') }}"
-        class="mt-4 bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">Create a Team</a>
+        class="relative inline-flex items-center justify-center p-0.5 my-4 me-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-400">
+        <span
+            class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray-900 rounded-md group-hover:bg-opacity-0">
+            Create a Team
+        </span>
+    </a>
 
-    <h1 class="mt-16 text-2xl font-bold text-blue-600">Teams List</h1>
+    <h1 class="my-6 text-3xl font-extrabold leading-none tracking-tight text-white md:text-4xl lg:text-5xl">Teams List</h1>
 
-    <table class="table-auto w-full mt-4 mb-16 text-left text-black dark:text-white">
-        <thead>
-            <tr>
-                <th class="px-4 py-2">Logo</th>
-                <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2">City</th>
-                <th class="px-4 py-2">League</th>
-                <th class="px-4 py-2">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($teams as $team)
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-400">
+            <thead class="text-s text-gray-200 uppercase bg-sky-950">
                 <tr>
-                    <td class="border px-4 py-2">
-                        <img src="{{ asset('storage/' . $team->logo) }}" alt="{{ $team->name }} logo" class="w-16">
-                    </td>
-                    <td class="border px-4 py-2">{{ $team->name }}</td>
-                    <td class="border px-4 py-2">{{ $team->city }}</td>
-                    <td class="border px-4 py-2">{{ $team->league }}</td>
-                    <td class="border px-4 py-2">
-                        <a href="{{ route('teams.show', $team->id) }}" class="text-blue-600 px-1">Details</a>
-                        <a href="{{ route('teams.edit', $team->id) }}" class="text-yellow-600 px-1">Edit</a>
-                        <form method="POST" action="{{ route('teams.destroy', $team) }}" class="inline px-1">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure you want to delete the team?')" class="text-red-600">Delete</button>
-                        </form>
+                    <th scope="col" class="px-6 py-3">
+                        Logo
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        League
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Actions
+                    </th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($teams as $team)
+                    <tr class="bg-cyan-700 border-b border-cyan-950 hover:bg-cyan-800">
+                        <td class="w-4 p-4">
+                            <div class="flex items-center justify-center">
+                                <img class="w-10 h-10" src="{{ asset('storage/' . $team->logo) }}"
+                                    alt="{{ $team->name }} logo">
+                            </div>
+                        </td>
+                        <th scope="row" class="flex flex-col items-start px-6 py-4 text-white whitespace-nowrap">
+                            <div class="text-base font-semibold">{{ $team->name }}</div>
+                            <div class="font-normal text-gray-300">{{ $team->city }}</div>
+                        </th>
+                        <td class="px-6 py-4 text-white text-base font-semibold">
+                            {{ $team->league }}
+                        </td>
+                        <td class="px-6 py-4 text-base">
+                            <div class="flex space-x-4">
+                                <a href="{{ route('teams.show', $team->id) }}"
+                                    class="text-blue-200 hover:text-blue-400">
+                                    <i class="fa-solid fa-magnifying-glass fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                </a>
+                                <a href="{{ route('teams.edit', $team->id) }}"
+                                    class="text-amber-400 hover:text-amber-600">
+                                    <i class="fa-regular fa-pen-to-square fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                </a>
+                                <form method="POST" action="{{ route('teams.destroy', $team) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        onclick="return confirm('Are you sure you want to delete the team?')"
+                                        class="text-red-400 hover:text-red-600">
+                                        <i class="fa-regular fa-trash-can fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
