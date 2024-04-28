@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-    // Preguntar para que sirve el HasFactory, para ver si es necesario.
-    use HasFactory;
+    // The attributes that are mass assignable, which means we can assign values to these fields from the form.
+    protected $fillable = ['name', 'city', 'league', 'logo'];
 }
