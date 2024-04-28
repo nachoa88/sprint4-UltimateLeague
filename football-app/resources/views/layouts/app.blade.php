@@ -10,9 +10,10 @@
 
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
-<body class="bg-sky-900">
+<body class="bg-sky-900 flex flex-col min-h-screen">
     <header class="text-white mb-8">
         <nav class="bg-sky-950 border-gray-700">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -60,14 +61,14 @@
     </header>
 
 
-    <div class="container mx-auto px-4 max-w-screen-lg">
+    <div class="container mx-auto px-4 max-w-screen-lg flex-grow">
 
         @yield('content')
 
     </div>
 
     <footer class="bg-sky-950 mt-8">
-        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="mx-auto w-full max-w-screen-xl p-4">
             <div class="md:flex md:justify-between">
                 <div class="flex items-center">
                     <a href="https://flowbite.com/" class="flex items-center">
@@ -99,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <hr class="my-6 border-gray-600 sm:mx-auto lg:my-8" />
+            <hr class="my-2 border-gray-600 sm:mx-auto lg:my-4" />
             <div class="sm:flex sm:items-center sm:justify-between">
                 <span class="text-sm text-gray-400 sm:text-center">© 2024 <a
                         href="https://ignacioalbiol.tech/" class="hover:underline">IAP-Dev</a>. All Rights Reserved.
