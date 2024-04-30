@@ -9,9 +9,6 @@ use App\Http\Requests\StoreGameRequest;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         // Game::all() gets all the teams from the database.
@@ -21,9 +18,6 @@ class GameController extends Controller
         return view('games.games', ['games' => $games]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(TeamService $teamService)
     {
         // As we need the teams to select when creating a new game, we use a service to import them.
@@ -32,46 +26,38 @@ class GameController extends Controller
         return view('games.create', ['teams' => $teams]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreGameRequest $request)
     {
-        // Need to add validations here.
+        //First we validate the incoming request with the rules specified in the StoreGameRequest class.
         $data = $request->validated();
-
+        // Create a new game with the data from the form.
         Game::create($data);
-
+        // Redirect to the games index.
         return redirect()->route('games.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Game $game)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Game $game)
+    public function edit(Game $game, TeamService $teamService)
     {
-        //
+        // As we need the teams to select when editing a game, we use a service to import them.
+        $teams = $teamService->getAllTeams();
+        // Edit will show the edit view with the game data, then update will be called.
+        return view('games.edit', ['game' => $game, 'teams' => $teams]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(StoreGameRequest $request, Game $game)
     {
-        //
+        $data = $request->validated();
+
+        $game->update($data);
+
+        return redirect()->route('games.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Game $game)
     {
         //
