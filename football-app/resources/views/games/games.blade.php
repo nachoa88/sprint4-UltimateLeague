@@ -14,10 +14,62 @@
     </a>
 
     <h1 class="my-6 text-3xl font-extrabold leading-none tracking-tight text-white md:text-4xl lg:text-5xl">Games List</h1>
-
-    <ul class="list-unstyled mb-16">
-        @foreach ($games as $game)
-            <li><a href="#!">{{ $game }}</a></li>
-        @endforeach
-    </ul>
+   
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-400">
+            <thead class="text-s text-gray-200 uppercase bg-sky-950">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Home Team
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Result
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Away Team
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Date
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($games as $game)
+                    <tr class="bg-cyan-700 border-b border-cyan-950 hover:bg-cyan-800">
+                        <td class="px-6 py-4 text-white text-base font-semibold">
+                            {{ $game->home_team_id }}
+                        </td>
+                        <td class="px-6 py-4 text-white text-base font-semibold">
+                            {{ $game->home_team_goals }} - {{ $game->away_team_goals }}
+                        </td>
+                        <td class="px-6 py-4 text-white text-base font-semibold">
+                            {{ $game->away_team_id }}
+                        </td>
+                        <td class="px-6 py-4 text-white text-base font-semibold">
+                            {{ $game->date }}
+                        </td>
+                        <td class="px-6 py-4 text-base">
+                            <div class="flex space-x-4">
+                                <a href="{{ route('games.show', $game->id) }}" class="text-blue-200 hover:text-blue-400">
+                                    <i class="fa-solid fa-magnifying-glass fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                </a>
+                                <a href="{{ route('games.edit', $game->id) }}" class="text-amber-400 hover:text-amber-600">
+                                    <i class="fa-regular fa-pen-to-square fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                </a>
+                                <form method="POST" action="{{ route('games.destroy', $game) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        onclick="return confirm('Are you sure you want to delete the game?')"
+                                        class="text-red-400 hover:text-red-600">
+                                        <i class="fa-regular fa-trash-can fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection

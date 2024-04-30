@@ -36,22 +36,22 @@
                         class="flex flex-col font-medium mt-4 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent bg-gray-800 border-gray-700">
                         <li>
                             <a href="{{ route('home') }}"
-                                class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-500"
+                                class="block py-2 px-3 md:p-0 rounded hover:bg-gray-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-500 {{ request()->is('/') ? 'text-blue-500' : 'text-white' }}"
                                 @if (Route::currentRouteName() == 'home') aria-current="page" @endif>Home</a>
                         </li>
                         <li>
                             <a href="{{ route('teams.index') }}"
-                                class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-500"
+                                class="block py-2 px-3 md:p-0 rounded hover:bg-gray-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-500 {{ request()->is('teams*') ? 'text-blue-500' : 'text-white' }}"
                                 @if (Route::currentRouteName() == 'teams.index') aria-current="page" @endif>Teams</a>
                         </li>
                         <li>
                             <a href="{{ route('games.index') }}"
-                                class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-500"
+                                class="block py-2 px-3 md:p-0 rounded hover:bg-gray-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-500 {{ request()->is('games*') ? 'text-blue-500' : 'text-white' }}"
                                 @if (Route::currentRouteName() == 'games.index') aria-current="page" @endif>Games</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-500"
+                                class="block py-2 px-3 md:p-0 rounded hover:bg-gray-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-500 {{ request()->is('login') ? 'text-blue-500' : 'text-white' }}"
                                 @if (Route::currentRouteName() == 'login.index') aria-current="page" @endif>Log In</a>
                         </li>
                     </ul>
