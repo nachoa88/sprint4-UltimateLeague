@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Services\TeamService;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use App\Http\Requests\StoreGameRequest;
 
 class GameController extends Controller
 {
@@ -16,7 +17,7 @@ class GameController extends Controller
         // Game::all() gets all the teams from the database.
         $games = Game::all();
         // Sort by date latest to oldest.
-        $games = $games->sortBy('date');
+        $games = $games->sortByDesc('date');
         return view('games.games', ['games' => $games]);
     }
 
@@ -34,16 +35,10 @@ class GameController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreGameRequest $request)
     {
         // Need to add validations here.
-        $data = $request->validate([
-            'home_team_id' => 'required',
-            'away_team_id' => 'required',
-            'date' => 'required',
-            'home_team_goals' => 'required',
-            'away_team_goals' => 'required',
-        ]);
+        $data = $request->validated();
 
         Game::create($data);
 
@@ -69,7 +64,7 @@ class GameController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Game $game)
+    public function update(StoreGameRequest $request, Game $game)
     {
         //
     }

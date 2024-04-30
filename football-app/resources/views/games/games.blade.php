@@ -49,7 +49,7 @@
                             {{ $game->away_team_id }}
                         </td>
                         <td class="px-6 py-4 text-white text-base font-semibold">
-                            {{ $game->date }}
+                            {{ \Carbon\Carbon::parse($game->date)->format('d/m/Y H:i') }}
                         </td>
                         <td class="px-6 py-4 text-base">
                             <div class="flex space-x-4">
