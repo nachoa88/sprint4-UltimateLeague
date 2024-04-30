@@ -60,6 +60,9 @@ class GameController extends Controller
 
     public function destroy(Game $game)
     {
-        //
+        // ->delete() is the function associated with destroying a model instance.
+        $game->delete();
+
+        return redirect()->route('games.index');
     }
 }
