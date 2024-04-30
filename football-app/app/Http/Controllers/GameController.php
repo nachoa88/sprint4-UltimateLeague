@@ -14,7 +14,9 @@ class GameController extends Controller
     {
         // Game::all() gets all the teams from the database.
         $games = Game::all();
-        return view('games', ['games' => $games]);
+        // Sort by date.
+        $games = $games->sortBy('date');
+        return view('games.games', ['games' => $games]);
     }
 
     /**
