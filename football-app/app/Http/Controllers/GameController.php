@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
-use Illuminate\Http\Request;
+use App\Services\TeamService;
+// use Illuminate\Http\Request;
+use App\Http\Requests\StoreGameRequest;
 
 class GameController extends Controller
 {
@@ -14,25 +16,33 @@ class GameController extends Controller
     {
         // Game::all() gets all the teams from the database.
         $games = Game::all();
-        // Sort by date.
-        $games = $games->sortBy('date');
+        // Sort by date latest to oldest.
+        $games = $games->sortByDesc('date');
         return view('games.games', ['games' => $games]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(TeamService $teamService)
     {
-        //
+        // As we need the teams to select when creating a new game, we use a service to import them.
+        $teams = $teamService->getAllTeams();
+        // Show the create view, and then pass the $teams info from the database.
+        return view('games.create', ['teams' => $teams]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreGameRequest $request)
     {
-        //
+        // Need to add validations here.
+        $data = $request->validated();
+
+        Game::create($data);
+
+        return redirect()->route('games.index');
     }
 
     /**
@@ -54,7 +64,7 @@ class GameController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Game $game)
+    public function update(StoreGameRequest $request, Game $game)
     {
         //
     }
