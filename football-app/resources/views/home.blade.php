@@ -10,3 +10,5 @@
         the excitement of the game. Join us and experience the seamless blend of technology and sports management today.
     </p>
 @endsection
+
+

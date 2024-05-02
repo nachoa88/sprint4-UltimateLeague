@@ -20,7 +20,7 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-400">
             <thead class="text-s text-gray-200 uppercase bg-sky-950">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-1 py-3 text-center">
                         Logo
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -29,7 +29,7 @@
                     <th scope="col" class="px-6 py-3">
                         League
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-center">
                         Actions
                     </th>
                 </tr>
@@ -37,7 +37,7 @@
             <tbody>
                 @foreach ($teams as $team)
                     <tr class="bg-cyan-700 border-b border-cyan-950 hover:bg-cyan-800">
-                        <td class="w-4 p-4">
+                        <td class="px-1 py-3 ">
                             <div class="flex items-center justify-center">
                                 <img class="w-10 h-10" src="{{ asset('storage/' . $team->logo) }}"
                                     alt="{{ $team->name }} logo">
@@ -51,7 +51,7 @@
                             {{ $team->league }}
                         </td>
                         <td class="px-6 py-4 text-base">
-                            <div class="flex space-x-4">
+                            <div class="flex space-x-4 justify-center">
                                 <a href="{{ route('teams.show', $team->id) }}"
                                     class="text-blue-200 hover:text-blue-400">
                                     <i class="fa-solid fa-magnifying-glass fa-xl hover:scale-150 transition-transform duration-200"></i>

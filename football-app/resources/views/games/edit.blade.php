@@ -28,7 +28,7 @@
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     required>
                     @foreach ($teams as $team)
-                        <option value="{{ $team->id }}"
+                        <option class="bg-cyan-950 text-white" value="{{ $team->id }}"
                             {{ old('home_team_id', $game->home_team_id) == $team->id ? 'selected' : '' }}>
                             {{ $team->name }}</option>
                     @endforeach
@@ -60,7 +60,7 @@
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     required>
                     @foreach ($teams as $team)
-                        <option value="{{ $team->id }}"
+                        <option class="bg-cyan-950 text-white" value="{{ $team->id }}"
                             {{ old('away_team_id', $game->away_team_id) == $team->id ? 'selected' : '' }}>
                             {{ $team->name }}</option>
                     @endforeach
