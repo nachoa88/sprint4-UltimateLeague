@@ -19,6 +19,9 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-400">
             <thead class="text-s text-gray-200 uppercase bg-sky-950">
                 <tr>
+                    <th scope="col" class="px-6 py-3">
+                        League
+                    </th>
                     <th scope="col" class="px-6 py-3 text-center">
                         Home Team
                     </th>
@@ -39,6 +42,9 @@
             <tbody>
                 @foreach ($games as $game)
                     <tr class="bg-cyan-700 border-b border-cyan-950 hover:bg-cyan-800">
+                        <td class="px-6 py-4 text-white text-base font-semibold">
+                            {{ $game->league->name }}
+                        </td>
                         <td class="px-6 py-4 text-white text-base font-semibold">
                             <div class="flex items-center justify-end">
                                 {{ $game->homeTeam->name }}

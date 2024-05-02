@@ -25,9 +25,11 @@ class StoreGameRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // The home_team_id and away_team_id must be different, is not necessary to repeat the logic for both.
-            'home_team_id' => ['required', Rule::notIn([$this->away_team_id]),],
-            'away_team_id' => 'required',
+            // The league_id must exist in the leagues table.
+            'league_id' => 'nullable|exists:leagues,id',
+            // The home_team_id and away_team_id must be different. Also, they must exist in the teams table.
+            'home_team_id' => ['required', 'exists:teams,id', Rule::notIn([$this->away_team_id])],
+            'away_team_id' => ['required', 'exists:teams,id', Rule::notIn([$this->home_team_id])],
             'date' => 'required|date|before_or_equal:today',
             // I think it's not necessary because form html already has the type="number" attribute and "required" camp.
             'home_team_goals' => 'required|integer',

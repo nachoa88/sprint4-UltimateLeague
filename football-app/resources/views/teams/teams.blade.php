@@ -29,6 +29,9 @@
                     <th scope="col" class="px-6 py-3">
                         League
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        Stadium
+                    </th>
                     <th scope="col" class="px-6 py-3 text-center">
                         Actions
                     </th>
@@ -48,7 +51,10 @@
                             <div class="font-normal text-gray-300">{{ $team->city }}</div>
                         </th>
                         <td class="px-6 py-4 text-white text-base font-semibold">
-                            {{ $team->league }}
+                            {{ $team->league->name }}
+                        </td>
+                        <td class="px-6 py-4 text-white text-base font-semibold">
+                            {{ $team->stadium_name }}
                         </td>
                         <td class="px-6 py-4 text-base">
                             <div class="flex space-x-4 justify-center">

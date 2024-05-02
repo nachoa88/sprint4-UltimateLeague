@@ -6,7 +6,6 @@
 
     <form method="POST" action="{{ route('games.store') }}" enctype="multipart/form-data" class="max-w-md mx-auto my-16">
         @csrf
-
         <!-- Game's Date -->
         <div class="relative z-0 w-full mb-5 group">
             <input type="datetime-local" name="date" id="date"
@@ -19,12 +18,29 @@
                 <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
         </div>
+        <!-- Game's League Name -->
+        <div class="relative z-0 w-full mb-5 group">
+            <select name="league_id" id="league_id"
+                class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer">
+                <option class="bg-cyan-950 text-white" value="">Select a league for your game</option>
+                @foreach ($leagues as $league)
+                    <option class="bg-cyan-950 text-white" value="{{ $league->id }}">{{ $league->name }}</option>
+                @endforeach
+            </select>
+            <label for="league_id"
+                class="peer-focus:font-medium absolute text-sm text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-teal-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                League Name</label>
+            @error('league_id')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
         <!-- Home Team & Score Selection -->
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-5 group">
                 <select name="home_team_id" id="home_team_id"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     required>
+                    <option class="bg-cyan-950 text-white" value="">Select a Home Team</option>
                     @foreach ($teams as $team)
                         <option class="bg-cyan-950 text-white" value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach
@@ -54,6 +70,7 @@
                 <select name="away_team_id" id="away_team_id"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     required>
+                    <option class="bg-cyan-950 text-white" value="">Select an Away Team</option>
                     @foreach ($teams as $team)
                         <option class="bg-cyan-950 text-white" value="{{ $team->id }}">{{ $team->name }}</option>
                     @endforeach
