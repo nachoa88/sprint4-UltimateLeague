@@ -46,14 +46,17 @@ class LeagueController extends Controller
     public function update(StoreLeagueRequest $request, League $league)
     {
         $data = $request->validated();
-    
+
         $league->update($data);
-    
+
         return redirect()->route('leagues.index');
     }
 
     public function destroy(League $league)
     {
-        //
+        // ->delete() is the function associated with destroying a model instance.
+        $league->delete();
+
+        return redirect()->route('leagues.index');
     }
 }
