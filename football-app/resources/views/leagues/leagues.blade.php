@@ -29,6 +29,9 @@
                         Country
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
+                        Nº Teams
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-center">
                         Actions
                     </th>
                 </tr>
@@ -44,6 +47,9 @@
                         </td>
                         <td class="px-6 py-4 text-white text-base font-semibold">
                             {{ $league->country }}
+                        </td>
+                        <td class="px-6 py-4 text-white text-base font-semibold text-center">
+                            {{ $league->teams_number }}
                         </td>
                         <td class="px-6 py-4 text-base">
                             <div class="flex space-x-4 justify-center">
