@@ -19,8 +19,14 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-400">
             <thead class="text-s text-gray-200 uppercase bg-sky-950">
                 <tr>
+                    <th scope="col" class="px-1 py-3 text-center">
+                        Level
+                    </th>
                     <th scope="col" class="px-6 py-3">
                         Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Country
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
                         Actions
@@ -30,8 +36,14 @@
             <tbody>
                 @foreach ($leagues as $league)
                     <tr class="bg-cyan-700 border-b border-cyan-950 hover:bg-cyan-800">
+                        <td class="px-1 py-3 text-white text-base font-semibold text-center">
+                            {{ $league->level }}
+                        </td>
                         <td class="px-6 py-4 text-white text-base font-semibold">
                             {{ $league->name }}
+                        </td>
+                        <td class="px-6 py-4 text-white text-base font-semibold">
+                            {{ $league->country }}
                         </td>
                         <td class="px-6 py-4 text-base">
                             <div class="flex space-x-4 justify-center">
