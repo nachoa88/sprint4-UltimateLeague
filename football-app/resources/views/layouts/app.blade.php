@@ -50,6 +50,11 @@
                                 @if (Route::currentRouteName() == 'games.index') aria-current="page" @endif>Games</a>
                         </li>
                         <li>
+                            <a href="{{ route('leagues.index') }}"
+                                class="block py-2 px-3 md:p-0 rounded hover:bg-gray-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-500 {{ request()->is('leagues*') ? 'text-blue-500' : 'text-white' }}"
+                                @if (Route::currentRouteName() == 'leagues.index') aria-current="page" @endif>Leagues</a>
+                        </li>
+                        <li>
                             <a href="#"
                                 class="block py-2 px-3 md:p-0 rounded hover:bg-gray-700 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-500 {{ request()->is('login') ? 'text-blue-500' : 'text-white' }}"
                                 @if (Route::currentRouteName() == 'login.index') aria-current="page" @endif>Log In</a>
