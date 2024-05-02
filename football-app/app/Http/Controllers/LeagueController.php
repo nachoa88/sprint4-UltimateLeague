@@ -23,7 +23,6 @@ class LeagueController extends Controller
 
     public function store(StoreLeagueRequest $request)
     {
-        echo "Hello";
         // ->validated() will validate the incoming request with the rules specified in the StoreLeagueRequest class.
         $data = $request->validated();
 
@@ -35,7 +34,9 @@ class LeagueController extends Controller
 
     public function show(League $league)
     {
-        //
+        // Soon we'll show the league details.
+        // return view('leagues.show', ['league' => $league]);
+        echo "<h1>This soon will the show leagues's details</h1>";
     }
 
     public function edit(League $league)

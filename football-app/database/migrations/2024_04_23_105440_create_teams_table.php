@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('league_id')->constrained('leagues');
+            $table->foreignId('league_id')->constrained('leagues')->nullable();
             $table->string('name')->unique();
             $table->string('city');
             $table->string('country');
-            $table->integer('founded');
-            $table->string('stadium_name');
-            $table->integer('stadium_capacity');
+            $table->integer('founded')->nullable();
+            $table->string('stadium_name')->nullable();
+            $table->integer('stadium_capacity')->nullable();
             $table->string('logo', 255);
             $table->timestamps();
         });

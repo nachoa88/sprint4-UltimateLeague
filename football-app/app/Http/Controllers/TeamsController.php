@@ -3,13 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Services\LeagueService;
 // use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTeamRequest;
-
+use Illuminate\Support\Facades\Storage;
 
 class TeamsController extends Controller
 {
+    // We create a variable for the leageService, so we can use it in the controller's functions.
+    protected $leagueService;
+    // The constructor will inject the LeagueService into the controller so code is more DRY.
+    public function __construct(LeagueService $leagueService)
+    {
+        $this->leagueService = $leagueService;
+        // Here goes middleware for authentication?
+    }
+    
     public function index()
     {
         // Team::all() gets all the teams from the database.
@@ -22,8 +31,10 @@ class TeamsController extends Controller
 
     public function create()
     {
+        // As we need the Leagues to select when creating a new team, we use a service function to import them.
+        $leagues = $this->leagueService->getAllLeagues();
         // Just show the create view, then store will be called.
-        return view('teams.create');
+        return view('teams.create', ['leagues' => $leagues]);
     }
 
     // POST calls the store method.
@@ -45,28 +56,32 @@ class TeamsController extends Controller
 
     public function show(Team $team)
     {
-        //
+        // Soon we'll show the team details.
+        // return view('teams.show', ['team' => $team]);
+        echo "<h1>This soon will the show team's details</h1>";
     }
 
     public function edit(Team $team)
     {
+        // As we need the Leagues to select when editing a new team, we use a service function to import them.
+        $leagues = $this->leagueService->getAllLeagues();
         // Edit will show the edit view with the team data, then update will be called.
-        return view('teams.edit', ['team' => $team]);
+        return view('teams.edit', ['team' => $team, 'leagues' => $leagues]);
     }
 
     public function update(StoreTeamRequest $request, Team $team)
     {
         $data = $request->validated();
-    
-        if($request->hasFile('logo')) {
+
+        if ($request->hasFile('logo')) {
             // Delete the old logo
             Storage::disk('public')->delete($team->logo);
             // Store the new logo
             $data['logo'] = $request->file('logo')->store('logos', 'public');
         }
-    
+
         $team->update($data);
-    
+
         return redirect()->route('teams.index');
     }
 
