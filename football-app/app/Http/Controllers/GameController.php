@@ -22,10 +22,12 @@ class GameController extends Controller
 
     public function index()
     {
-        // Game::all() gets all the teams from the database.
-        $games = Game::all();
-        // Sort by date latest to oldest.
-        $games = $games->sortByDesc('date');
+        // We get all the games from the database, and group them by matchweek.
+        $games = Game::with('league')
+            ->orderBy('matchweek')
+            ->get()
+            ->groupBy('matchweek');
+        // We return the view with the games data.
         return view('games.games', ['games' => $games]);
     }
 

@@ -13,7 +13,8 @@ class Game extends Model
         'away_team_id',
         'date',
         'home_team_goals',
-        'away_team_goals'
+        'away_team_goals',
+        'matchweek',
     ];
 
 

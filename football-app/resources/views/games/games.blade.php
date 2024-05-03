@@ -40,54 +40,65 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($games as $game)
-                    <tr class="bg-cyan-700 border-b border-cyan-950 hover:bg-cyan-800">
-                        <td class="px-6 py-4 text-white text-base font-semibold">
-                            {{ $game->league->name }}
-                        </td>
-                        <td class="px-6 py-4 text-white text-base font-semibold">
-                            <div class="flex items-center justify-end">
-                                {{ $game->homeTeam->name }}
-                                <img class="ml-2 w-10 h-10" src="{{ asset('storage/' . $game->homeTeam->logo) }}"
-                                    alt="{{ $game->homeTeam->name }} logo">
-                            </div>
-                        </td>
-                        <td class="px-2 py-4 text-white text-base font-semibold text-center">
-                            {{ $game->home_team_goals }} - {{ $game->away_team_goals }}
-                        </td>
-                        <td class="px-6 py-4 text-white text-base font-semibold">
-                            <div class="flex items-center justify-start">
-                                <img class="mr-2 w-10 h-10" src="{{ asset('storage/' . $game->awayTeam->logo) }}"
-                                    alt="{{ $game->awayTeam->name }} logo">
-                                {{ $game->awayTeam->name }}
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 text-white text-base font-semibold text-center">
-                            {{ \Carbon\Carbon::parse($game->date)->format('d/m/Y H:i') }}
-                        </td>
-                        <td class="px-6 py-4 text-base">
-                            <div class="flex space-x-4 justify-center">
-                                <a href="{{ route('games.show', $game->id) }}" class="text-blue-200 hover:text-blue-400">
-                                    <i
-                                        class="fa-solid fa-magnifying-glass fa-xl hover:scale-150 transition-transform duration-200"></i>
-                                </a>
-                                <a href="{{ route('games.edit', $game->id) }}" class="text-amber-400 hover:text-amber-600">
-                                    <i
-                                        class="fa-regular fa-pen-to-square fa-xl hover:scale-150 transition-transform duration-200"></i>
-                                </a>
-                                <form method="POST" action="{{ route('games.destroy', $game) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        onclick="return confirm('Are you sure you want to delete the game?')"
-                                        class="text-red-400 hover:text-red-600">
-                                        <i
-                                            class="fa-regular fa-trash-can fa-xl hover:scale-150 transition-transform duration-200"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
+                <!-- Loop through the games, save the matchweek as key and each game as value in the $gamesInMatchweek variable -->
+                @foreach ($games as $matchweek => $gamesInMatchweek)
+                    <tr>
+                        <th colspan="6" class="px-6 py-1 text-white text-base font-semibold text-center">
+                            Matchweek {{ $matchweek }}
+                        </th>
                     </tr>
+                    <!-- Loop through the games in the matchweek -->
+                    @foreach ($gamesInMatchweek as $game)
+                        <tr class="bg-cyan-700 border-b border-cyan-950 hover:bg-cyan-800">
+                            <td class="px-6 py-4 text-white text-base font-semibold">
+                                {{ $game->league->name }}
+                            </td>
+                            <td class="px-6 py-4 text-white text-base font-semibold">
+                                <div class="flex items-center justify-end">
+                                    {{ $game->homeTeam->name }}
+                                    <img class="ml-2 w-10 h-10" src="{{ asset('storage/' . $game->homeTeam->logo) }}"
+                                        alt="{{ $game->homeTeam->name }} logo">
+                                </div>
+                            </td>
+                            <td class="px-2 py-4 text-white text-base font-semibold text-center">
+                                {{ $game->home_team_goals }} - {{ $game->away_team_goals }}
+                            </td>
+                            <td class="px-6 py-4 text-white text-base font-semibold">
+                                <div class="flex items-center justify-start">
+                                    <img class="mr-2 w-10 h-10" src="{{ asset('storage/' . $game->awayTeam->logo) }}"
+                                        alt="{{ $game->awayTeam->name }} logo">
+                                    {{ $game->awayTeam->name }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-white text-base font-semibold text-center">
+                                {{ \Carbon\Carbon::parse($game->date)->translatedFormat('D d/m/Y H:i') }}
+                            </td>
+                            <td class="px-6 py-4 text-base">
+                                <div class="flex space-x-4 justify-center">
+                                    <a href="{{ route('games.show', $game->id) }}"
+                                        class="text-blue-200 hover:text-blue-400">
+                                        <i
+                                            class="fa-solid fa-magnifying-glass fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                    </a>
+                                    <a href="{{ route('games.edit', $game->id) }}"
+                                        class="text-amber-400 hover:text-amber-600">
+                                        <i
+                                            class="fa-regular fa-pen-to-square fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                    </a>
+                                    <form method="POST" action="{{ route('games.destroy', $game) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            onclick="return confirm('Are you sure you want to delete the game?')"
+                                            class="text-red-400 hover:text-red-600">
+                                            <i
+                                                class="fa-regular fa-trash-can fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 @endforeach
             </tbody>
         </table>

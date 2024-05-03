@@ -6,18 +6,6 @@
 
     <form method="POST" action="{{ route('games.store') }}" enctype="multipart/form-data" class="max-w-md mx-auto my-16">
         @csrf
-        <!-- Game's Date -->
-        <div class="relative z-0 w-full mb-5 group">
-            <input type="datetime-local" name="date" id="date"
-                class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
-                placeholder=" " required />
-            <label for="date"
-                class="peer-focus:font-medium absolute text-sm text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-teal-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                Game's Date</label>
-            @error('date')
-                <span class="text-red-500 text-sm">{{ $message }}</span>
-            @enderror
-        </div>
         <!-- Game's League Name -->
         <div class="relative z-0 w-full mb-5 group">
             <select name="league_id" id="league_id"
@@ -33,6 +21,31 @@
             @error('league_id')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
+        </div>
+        <!-- Game's Date & Matchweek -->
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="datetime-local" name="date" id="date"
+                    class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
+                    placeholder=" " required />
+                <label for="date"
+                    class="peer-focus:font-medium absolute text-sm text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-teal-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Game's Date</label>
+                @error('date')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="number" name="matchweek" id="matchweek"
+                    class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
+                    placeholder=" " required />
+                <label for="matchweek"
+                    class="peer-focus:font-medium absolute text-sm text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-teal-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Matchweek</label>
+                @error('matchweek')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
         </div>
         <!-- Home Team & Score Selection -->
         <div class="grid md:grid-cols-2 md:gap-6">

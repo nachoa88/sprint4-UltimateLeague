@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('date');
             $table->integer('home_team_goals');
             $table->integer('away_team_goals');
+            $table->integer('matchweek');
             $table->timestamps();
         });
     }

@@ -34,6 +34,7 @@ class StoreGameRequest extends FormRequest
             // I think it's not necessary because form html already has the type="number" attribute and "required" camp.
             'home_team_goals' => 'required|integer',
             'away_team_goals' => 'required|integer',
+            'matchweek' => 'integer',
         ];
     }
 
@@ -53,6 +54,7 @@ class StoreGameRequest extends FormRequest
             'date.before_or_equal' => 'The date of the match cannot be in the future.',
             'home_team_goals.required' => 'The home team goals are required.',
             'away_team_goals.required' => 'The away team goals are required.',
+            'matchweek.integer' => 'The matchweek must be an integer.',
         ];
     }
 }
