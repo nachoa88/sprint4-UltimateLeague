@@ -10,4 +10,9 @@ class TeamService
     {
         return Team::all();
     }
+
+    public function getAllTeamsWithTrashed()
+{
+    return Team::withTrashed()->get();
+}
 }

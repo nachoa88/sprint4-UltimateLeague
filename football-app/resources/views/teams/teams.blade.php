@@ -58,13 +58,13 @@
                         </td>
                         <td class="px-6 py-4 text-base">
                             <div class="flex space-x-4 justify-center">
-                                <a href="{{ route('teams.show', $team->id) }}"
-                                    class="text-blue-200 hover:text-blue-400">
-                                    <i class="fa-solid fa-magnifying-glass fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                <a href="{{ route('teams.show', $team->id) }}" class="text-blue-200 hover:text-blue-400">
+                                    <i
+                                        class="fa-solid fa-magnifying-glass fa-xl hover:scale-150 transition-transform duration-200"></i>
                                 </a>
-                                <a href="{{ route('teams.edit', $team->id) }}"
-                                    class="text-amber-400 hover:text-amber-600">
-                                    <i class="fa-regular fa-pen-to-square fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                <a href="{{ route('teams.edit', $team->id) }}" class="text-amber-400 hover:text-amber-600">
+                                    <i
+                                        class="fa-regular fa-pen-to-square fa-xl hover:scale-150 transition-transform duration-200"></i>
                                 </a>
                                 <form method="POST" action="{{ route('teams.destroy', $team) }}">
                                     @csrf
@@ -72,7 +72,8 @@
                                     <button type="submit"
                                         onclick="return confirm('Are you sure you want to delete the team?')"
                                         class="text-red-400 hover:text-red-600">
-                                        <i class="fa-regular fa-trash-can fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                        <i
+                                            class="fa-regular fa-trash-can fa-xl hover:scale-150 transition-transform duration-200"></i>
                                     </button>
                                 </form>
                             </div>
@@ -81,5 +82,15 @@
                 @endforeach
             </tbody>
         </table>
+
+        <p class="mt-4 text-lg font-normal text-gray-200 lg:text-xl">Have you deleted a team by accident? With League Manager you
+            can recover the team just pressing the button and following the instructions.</p>
+        <a href="{{ route('teams.deleted') }}"
+            class="relative inline-flex items-center justify-center p-0.5 my-4 me-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-400">
+            <span
+                class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Recover a Deleted Team
+            </span>
+        </a>
     </div>
 @endsection

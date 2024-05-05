@@ -18,7 +18,7 @@ class TeamsController extends Controller
         $this->leagueService = $leagueService;
         // Here goes middleware for authentication?
     }
-    
+
     public function index()
     {
         // Team::all() gets all the teams from the database.
@@ -54,6 +54,7 @@ class TeamsController extends Controller
         return redirect()->route('teams.index');
     }
 
+    // Laravel automatically injects the Team model instance and passes it to the method.
     public function show(Team $team)
     {
         // Soon we'll show the team details.
@@ -87,10 +88,31 @@ class TeamsController extends Controller
 
     public function destroy(Team $team)
     {
-        // Delete the logo file in the storage folder associated with the team.
-        Storage::disk('public')->delete($team->logo);
+        // Check if we're performing a hard delete.
+        if ($team->trashed()) {
+            // If we're performing a hard delete, we delete the logo from storage.
+            Storage::disk('public')->delete($team->logo);
+        }
         // ->delete() is the function associated with destroying a model instance.
         $team->delete();
+
+        return redirect()->route('teams.index');
+    }
+
+    public function showDeleted()
+    {
+        // We get all the teams that have been deleted.
+        $teams = Team::onlyTrashed()->get();
+
+        return view('teams.deleted', ['teams' => $teams]);
+    }
+
+    public function restore($id)
+    {
+        // Find the team, including the deleted ones.
+        $team = Team::withTrashed()->find($id);
+        // Restore the team.
+        $team->restore();
 
         return redirect()->route('teams.index');
     }
