@@ -22,11 +22,16 @@ class GameController extends Controller
 
     public function index()
     {
-        // We get all the games from the database, and group them by matchweek.
-        $games = Game::with('league')
+        // We get all the games from the database, we also include soft-deleted teams and group them by matchweek.
+        $games = Game::with(['league', 'homeTeam' => function ($query) {
+            $query->withTrashed();
+        }, 'awayTeam' => function ($query) {
+            $query->withTrashed();
+        }])
             ->orderBy('matchweek')
             ->get()
             ->groupBy('matchweek');
+
         // We return the view with the games data.
         return view('games.games', ['games' => $games]);
     }

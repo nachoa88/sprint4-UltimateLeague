@@ -26,7 +26,7 @@ class StoreGameRequest extends FormRequest
     {
         return [
             // The league_id must exist in the leagues table.
-            'league_id' => 'nullable|exists:leagues,id',
+            'league_id' => 'exists:leagues,id',
             // The home_team_id and away_team_id must be different. Also, they must exist in the teams table.
             'home_team_id' => ['required', 'exists:teams,id', Rule::notIn([$this->away_team_id])],
             'away_team_id' => ['required', 'exists:teams,id', Rule::notIn([$this->home_team_id])],
@@ -47,6 +47,7 @@ class StoreGameRequest extends FormRequest
     {
         // Add custom error messages for the rules defined in the rules() method.
         return [
+            'league_id' => 'The selected league cannot be found.',
             'home_team_id.required' => 'The home team is required.',
             'home_team_id.not_in' => 'The home team cannot be the same as the away team.',
             'away_team_id.required' => 'The away team is required.',

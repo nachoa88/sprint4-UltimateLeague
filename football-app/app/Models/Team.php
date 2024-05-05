@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Team extends Model
 {
+    use SoftDeletes;
+    
     // The attributes that are mass assignable, which means we can assign values to these fields from the form.
     protected $fillable = [
         'league_id',

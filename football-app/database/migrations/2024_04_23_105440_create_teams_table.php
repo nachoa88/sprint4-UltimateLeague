@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teams', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->foreignId('league_id')->constrained('leagues')->nullable();
             $table->string('name')->unique();
