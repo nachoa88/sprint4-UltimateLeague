@@ -37,7 +37,7 @@ class StoreTeamRequest extends FormRequest
             'founded' => 'nullable|integer|between:1800,'.date('Y'),
             'stadium_name' => 'nullable|string',
             'stadium_capacity' => 'nullable|integer|min:500',
-            'logo' => 'image|max:500',
+            'logo' => 'required|image|max:500',
         ];
     }
 

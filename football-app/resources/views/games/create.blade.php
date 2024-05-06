@@ -12,7 +12,8 @@
                 class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer">
                 <option class="bg-cyan-950 text-white" value="">Select a league for your game</option>
                 @foreach ($leagues as $league)
-                    <option class="bg-cyan-950 text-white" value="{{ $league->id }}">{{ $league->name }}</option>
+                    <option class="bg-cyan-950 text-white" value="{{ $league->id }}"
+                        {{ old('league_id') == $league->id ? 'selected' : '' }}> {{ $league->name }}</option>
                 @endforeach
             </select>
             <label for="league_id"
@@ -25,7 +26,7 @@
         <!-- Game's Date & Matchweek -->
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-5 group">
-                <input type="datetime-local" name="date" id="date"
+                <input type="datetime-local" name="date" id="date" value="{{ old('date') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " required />
                 <label for="date"
@@ -36,7 +37,7 @@
                 @enderror
             </div>
             <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="matchweek" id="matchweek"
+                <input type="number" name="matchweek" id="matchweek" value="{{ old('matchweek') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " required />
                 <label for="matchweek"
@@ -55,7 +56,8 @@
                     required>
                     <option class="bg-cyan-950 text-white" value="">Select a Home Team</option>
                     @foreach ($teams as $team)
-                        <option class="bg-cyan-950 text-white" value="{{ $team->id }}">{{ $team->name }}</option>
+                        <option class="bg-cyan-950 text-white" value="{{ $team->id }}"
+                            {{ old('home_team_id') == $team->id ? 'selected' : '' }}>{{ $team->name }}</option>
                     @endforeach
                 </select>
                 <label for="home_team_id"
@@ -66,7 +68,7 @@
                 @enderror
             </div>
             <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="home_team_goals" id="home_team_goals"
+                <input type="number" name="home_team_goals" id="home_team_goals" value="{{ old('home_team_goals') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " required />
                 <label for="home_team_goals"
@@ -85,7 +87,8 @@
                     required>
                     <option class="bg-cyan-950 text-white" value="">Select an Away Team</option>
                     @foreach ($teams as $team)
-                        <option class="bg-cyan-950 text-white" value="{{ $team->id }}">{{ $team->name }}</option>
+                        <option class="bg-cyan-950 text-white" value="{{ $team->id }}"
+                            {{ old('away_team_id') == $team->id ? 'selected' : '' }}>{{ $team->name }}</option>
                     @endforeach
                 </select>
                 <label for="away_team_id"
@@ -96,7 +99,7 @@
                 @enderror
             </div>
             <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="away_team_goals" id="away_team_goals"
+                <input type="number" name="away_team_goals" id="away_team_goals" value="{{ old('away_team_goals') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " required />
                 <label for="away_team_goals"

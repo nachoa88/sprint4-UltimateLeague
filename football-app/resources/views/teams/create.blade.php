@@ -12,7 +12,8 @@
                 class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer">
                 <option class="bg-cyan-950 text-white" value="">Select a league for your team</option>
                 @foreach ($leagues as $league)
-                    <option class="bg-cyan-950 text-white" value="{{ $league->id }}">{{ $league->name }}</option>
+                    <option class="bg-cyan-950 text-white" value="{{ $league->id }}"
+                        {{ old('league_id') == $league->id ? 'selected' : '' }}>{{ $league->name }}</option>
                 @endforeach
             </select>
             <label for="league_id"
@@ -25,7 +26,7 @@
         <!-- Team's Name & Year of Fundation-->
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="name" id="name"
+                <input type="text" name="name" id="name" value="{{ old('name') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " required />
                 <label for="name"
@@ -36,7 +37,7 @@
                 @enderror
             </div>
             <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="founded" id="founded"
+                <input type="number" name="founded" id="founded" value="{{ old('founded') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " />
                 <label for="founded"
@@ -50,7 +51,7 @@
         <!-- Team's City & Country -->
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="city" id="city"
+                <input type="text" name="city" id="city" value="{{ old('city') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " required />
                 <label for="city"
@@ -61,7 +62,7 @@
                 <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
             <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="country" id="country"
+                <input type="text" name="country" id="country" value="{{ old('country') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " required />
                 <label for="country"
@@ -75,7 +76,7 @@
         <!-- Team's Stadium Name & Capacity -->
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="stadium_name" id="stadium_name"
+                <input type="text" name="stadium_name" id="stadium_name" value="{{ old('stadium_name') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " />
                 <label for="stadium_name"
@@ -83,7 +84,7 @@
                     Stadium Name</label>
             </div>
             <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="stadium_capacity" id="stadium_capacity"
+                <input type="number" name="stadium_capacity" id="stadium_capacity" value="{{ old('stadium_capacity') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " />
                 <label for="stadium_capacity"
