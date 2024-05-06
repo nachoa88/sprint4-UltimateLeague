@@ -3,7 +3,7 @@ Utilitzat `docker compose` command amb el fitxer `docker-compose.yml` i un `Dock
 
 ### Laravel MVC
 ## Nivell 1 - Funcionalitats bàsiques
-1) Creació de una base de dades amb dues taules, una amb equips i l'altre amb partits, fent servir la migració per la creació de les mateixes. Creació de Models i Controllers per poder realitzar les operacions del CRUD per totes dues taules. Creació de Views amb blade, un layout en comú per la APP i definit l'estil fent servir TailWind. (STYLE: veure d'afegir més effectes)
+1) Creació de una base de dades amb tres taules (equips, partits i lligues), fent servir la migració per la creació de les mateixes. Creació de Models i Controllers per poder realitzar les operacions del CRUD per totes les taules. Creació de Views amb blade, un layout en comú per la APP i definit l'estil fent servir TailWind. Creada la funció per fer un soft delete i recover dels equips.
 
 ## Nivell 2 - Sistema d'autenticació
 1) ...
