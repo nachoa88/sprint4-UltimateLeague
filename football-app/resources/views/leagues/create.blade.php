@@ -8,7 +8,7 @@
         @csrf
         <!-- League's Name -->
         <div class="relative z-0 w-full mb-5 group">
-            <input type="text" name="name" id="name"
+            <input type="text" name="name" id="name" value="{{ old('name') }}"
                 class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                 placeholder=" " required />
             <label for="name"
@@ -20,7 +20,7 @@
         </div>
         <!-- League's Country -->
         <div class="relative z-0 w-full mb-5 group">
-            <input type="text" name="country" id="country"
+            <input type="text" name="country" id="country" value="{{ old('country') }}"
                 class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                 placeholder=" " required />
             <label for="country"
@@ -33,7 +33,7 @@
         <!-- League's Number of Teams & Level -->
         <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="teams_number" id="teams_number"
+                <input type="number" name="teams_number" id="teams_number" value="{{ old('teams_number') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " required />
                 <label for="teams_number"
@@ -44,7 +44,7 @@
                 @enderror
             </div>
             <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="level" id="level"
+                <input type="number" name="level" id="level" value="{{ old('level') }}"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer"
                     placeholder=" " required />
                 <label for="level"

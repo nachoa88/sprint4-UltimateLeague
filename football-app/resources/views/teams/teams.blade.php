@@ -51,10 +51,12 @@
                             <div class="font-normal text-gray-300">{{ $team->city }}</div>
                         </th>
                         <td class="px-6 py-4 text-white text-base font-semibold">
-                            {{ $team->league->name }}
+                            {{ $team->league ? $team->league->name : 'N/A' }}
                         </td>
                         <td class="px-6 py-4 text-white text-base font-semibold">
-                            {{ $team->stadium_name }}
+                            <div class="text-base font-semibold">{{ $team->stadium_name }}</div>
+                            <div class="font-normal text-gray-300">
+                                {{ $team->stadium_capacity ? 'Capacity: ' . $team->stadium_capacity : '' }}</div>
                         </td>
                         <td class="px-6 py-4 text-base">
                             <div class="flex space-x-4 justify-center">
@@ -83,7 +85,8 @@
             </tbody>
         </table>
 
-        <p class="mt-4 text-lg font-normal text-gray-200 lg:text-xl">Have you deleted a team by accident? With League Manager you
+        <p class="mt-4 text-lg font-normal text-gray-200 lg:text-xl">Have you deleted a team by accident? With League
+            Manager you
             can recover the team just pressing the button and following the instructions.</p>
         <a href="{{ route('teams.deleted') }}"
             class="relative inline-flex items-center justify-center p-0.5 my-4 me-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-400">

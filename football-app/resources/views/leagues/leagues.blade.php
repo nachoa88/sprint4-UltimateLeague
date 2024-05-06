@@ -16,6 +16,9 @@
     <h1 class="my-6 text-3xl font-extrabold leading-none tracking-tight text-white md:text-4xl lg:text-5xl">Teams List</h1>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        @if (session('error'))
+            <div class="mb-2 text-red-500 text-lg text-center">{{ session('error') }}</div>
+        @endif
         <table class="w-full text-sm text-left rtl:text-right text-gray-400">
             <thead class="text-s text-gray-200 uppercase bg-sky-950">
                 <tr>
@@ -55,11 +58,13 @@
                             <div class="flex space-x-4 justify-center">
                                 <a href="{{ route('leagues.show', $league->id) }}"
                                     class="text-blue-200 hover:text-blue-400">
-                                    <i class="fa-solid fa-magnifying-glass fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                    <i
+                                        class="fa-solid fa-magnifying-glass fa-xl hover:scale-150 transition-transform duration-200"></i>
                                 </a>
                                 <a href="{{ route('leagues.edit', $league->id) }}"
                                     class="text-amber-400 hover:text-amber-600">
-                                    <i class="fa-regular fa-pen-to-square fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                    <i
+                                        class="fa-regular fa-pen-to-square fa-xl hover:scale-150 transition-transform duration-200"></i>
                                 </a>
                                 <form method="POST" action="{{ route('leagues.destroy', $league) }}">
                                     @csrf
@@ -67,7 +72,8 @@
                                     <button type="submit"
                                         onclick="return confirm('Are you sure you want to delete the league?')"
                                         class="text-red-400 hover:text-red-600">
-                                        <i class="fa-regular fa-trash-can fa-xl hover:scale-150 transition-transform duration-200"></i>
+                                        <i
+                                            class="fa-regular fa-trash-can fa-xl hover:scale-150 transition-transform duration-200"></i>
                                     </button>
                                 </form>
                             </div>

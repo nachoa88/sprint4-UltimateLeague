@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\League;
 // use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use App\Http\Requests\StoreLeagueRequest;
 
 class LeagueController extends Controller
@@ -55,8 +56,13 @@ class LeagueController extends Controller
 
     public function destroy(League $league)
     {
-        // ->delete() is the function associated with destroying a model instance.
-        $league->delete();
+        // We need to check if the league has games before deleting it, try to delete it and catch the exception if it fails.
+        try {
+            $league->delete();
+        } catch (QueryException $e) {
+            // back() will redirect the user back to the previous page.
+            return back()->with('error', 'The league has games, you can not delete it.');
+        }
 
         return redirect()->route('leagues.index');
     }
