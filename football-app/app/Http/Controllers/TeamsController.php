@@ -43,10 +43,8 @@ class TeamsController extends Controller
         // ->validated() will validate the incoming request with the rules specified in the StoreTeamRequest class.
         $data = $request->validated();
 
-        if ($request->hasFile('logo')) {
-            // The file is stored in the public disk.
-            $data['logo'] = $request->file('logo')->store('logos', 'public');
-        }
+        // The file is stored in the public disk.
+        $data['logo'] = $request->file('logo')->store('logos', 'public');
 
         // Create a new team with the data from the form.
         Team::create($data);
@@ -87,7 +85,7 @@ class TeamsController extends Controller
 
     public function destroy(Team $team)
     {
-        // Check if we're performing a hard delete.
+        // Check if we're performing a hard delete (this will be added in the view soon)
         if ($team->trashed()) {
             // If we're performing a hard delete, we delete the logo from storage.
             Storage::disk('public')->delete($team->logo);

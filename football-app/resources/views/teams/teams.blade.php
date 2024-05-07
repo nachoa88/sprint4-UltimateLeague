@@ -51,7 +51,7 @@
                             <div class="font-normal text-gray-300">{{ $team->city }}</div>
                         </th>
                         <td class="px-6 py-4 text-white text-base font-semibold">
-                            {{ $team->league ? $team->league->name : 'N/A' }}
+                            {{ $team->league->name ?? 'N/A' }}
                         </td>
                         <td class="px-6 py-4 text-white text-base font-semibold">
                             <div class="text-base font-semibold">{{ $team->stadium_name }}</div>
