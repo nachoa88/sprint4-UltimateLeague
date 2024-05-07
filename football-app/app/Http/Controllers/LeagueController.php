@@ -35,9 +35,20 @@ class LeagueController extends Controller
 
     public function show(League $league)
     {
+        // We'll use the level to show the league description in the view.
+        $level = $league->level;
+        $levelDescription = match ($level) {
+            1 => 'First Division',
+            2 => 'Second Division',
+            3 => 'Third Division',
+            4 => 'Fourth Division',
+            5 => 'Fifth Division',
+            6 => 'Sixth Division',
+            default => 'Unknown',
+        };
+
         // Soon we'll show the league details.
-        // return view('leagues.show', ['league' => $league]);
-        echo "<h1>This soon will the show leagues's details</h1>";
+        return view('leagues.show', ['league' => $league], ['levelDescription' => $levelDescription]);
     }
 
     public function edit(League $league)
