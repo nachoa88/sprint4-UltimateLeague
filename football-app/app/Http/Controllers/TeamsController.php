@@ -58,8 +58,7 @@ class TeamsController extends Controller
     public function show(Team $team)
     {
         // Soon we'll show the team details.
-        // return view('teams.show', ['team' => $team]);
-        echo "<h1>This soon will the show team's details</h1>";
+        return view('teams.show', ['team' => $team]);
     }
 
     public function edit(Team $team)

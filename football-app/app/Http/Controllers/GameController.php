@@ -59,8 +59,7 @@ class GameController extends Controller
     public function show(Game $game)
     {
         // Soon we'll show the game's details.
-        // return view('games.show', ['games' => $game]);
-        echo "<h1>This soon will the show game's details</h1>";
+        return view('games.show', ['games' => $game]);
     }
 
     public function edit(Game $game)

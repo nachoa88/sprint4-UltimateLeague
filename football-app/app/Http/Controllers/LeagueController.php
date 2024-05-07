@@ -36,8 +36,7 @@ class LeagueController extends Controller
     public function show(League $league)
     {
         // Soon we'll show the league details.
-        // return view('leagues.show', ['league' => $league]);
-        echo "<h1>This soon will the show leagues's details</h1>";
+        return view('leagues.show', ['league' => $league]);
     }
 
     public function edit(League $league)
