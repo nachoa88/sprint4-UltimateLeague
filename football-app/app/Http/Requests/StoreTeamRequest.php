@@ -27,18 +27,23 @@ class StoreTeamRequest extends FormRequest
         // The teamId is used to ignore the current team when updating it, if not it will always return a unique error.
         $teamId = $this->route('team') ? $this->route('team')->id : null;
 
-        return [
+        $rules = [
             // The league_id must exist in the leagues table.
             'league_id' => 'nullable|exists:leagues,id',
             // The name must be unique in the teams table, but we need to ignore the current team when updating it.
             'name' => ['required', Rule::unique('teams')->ignore($teamId)],
             'city' => 'required',
             'country' => 'required',
-            'founded' => 'nullable|integer|between:1800,'.date('Y'),
+            'founded' => 'nullable|integer|between:1800,' . date('Y'),
             'stadium_name' => 'nullable|string',
             'stadium_capacity' => 'nullable|integer|min:500',
-            'logo' => 'required|image|max:500',
         ];
+
+        if ($this->isMethod('post')) {
+            $rules['logo'] = 'required|image|max:500';
+        }
+
+        return $rules;
     }
 
     /**
