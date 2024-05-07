@@ -2,12 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\LeagueController;
 
+// IMPORTANT: The specific routes must go before than the resource one.
+// I've added the HomeController to return the view instead of the anonymous function.
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/other', function () {
-    return view('other');
-})->name('other');
+// Added two routes to recover the teams of a league that have been deleted.
+Route::get('teams/deleted', [TeamsController::class, 'showDeleted'])->name('teams.deleted');
+Route::put('teams/{team}/restore', [TeamsController::class, 'restore'])->name('teams.restore');
 
+// With resouce method, we can create all the routes for the controller with one line of code.
+Route::resource('teams', TeamsController::class);
+Route::resource('games', GameController::class);
+Route::resource('leagues', LeagueController::class);
