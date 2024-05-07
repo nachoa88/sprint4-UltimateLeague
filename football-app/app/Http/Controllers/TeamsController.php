@@ -21,8 +21,8 @@ class TeamsController extends Controller
 
     public function index()
     {
-        // Team::all() gets all the teams from the database.
-        $teams = Team::all();
+        // Team::all() gets all the teams with their leagues.
+        $teams = Team::with('league')->get();
         // For example we'll sort the teams by name.
         $teams = $teams->sortBy('name');
         // As the teams file is inside the view/teams folder, we need to specify the path to the view.
