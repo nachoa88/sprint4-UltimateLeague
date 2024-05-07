@@ -99,7 +99,7 @@ class TeamsController extends Controller
     public function showDeleted()
     {
         // We get all the teams that have been deleted.
-        $teams = Team::onlyTrashed()->get();
+        $teams = Team::onlyTrashed()->with('league')->get();
 
         return view('teams.deleted', ['teams' => $teams]);
     }
