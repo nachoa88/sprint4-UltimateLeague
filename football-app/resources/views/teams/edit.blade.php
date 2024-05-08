@@ -99,15 +99,16 @@
         </div>
         <!-- Team's Logo -->
         <div class="relative z-0 w-full mb-5 group flex items-center">
-            <img src="{{ asset('storage/' . $team->logo) }}" alt="{{ $team->name }} logo" class="w-12 h-12 mr-4">
+            <div class="mr-4 flex items-center justify-start">
+                <p class="mr-4 font-medium text-sm text-gray-200">Current logo:</p>
+                <img src="{{ asset('storage/' . $team->logo) }}" alt="{{ $team->name }} logo" class="w-12 h-12">
+            </div>
             <div class="flex-grow">
                 <input type="file" name="logo" id="logo"
                     class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-sky-500 appearance-none focus:outline-none focus:ring-0 focus:border-teal-300 peer" />
                 <label for="logo"
                     class="peer-focus:font-medium absolute text-sm text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-teal-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    Upload Team's Logo</label>
-                <div class="mt-1 text-sm text-gray-400" id="logo_help">
-                    Your team needs a logo, what's a team without it!</div>
+                    Upload a New Team's Logo</label>
                 @error('logo')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
