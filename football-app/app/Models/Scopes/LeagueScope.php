@@ -13,6 +13,11 @@ class LeagueScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
+        // If the current route is any of the leages route, don't apply the scope.
+        if (request()->routeIs('leagues*')) {
+            return;
+        }
+
         // We'll get the league_id from the session.
         $leagueId = session('league_id');
         // If we have a league_id, we'll filter the teams by that league.
