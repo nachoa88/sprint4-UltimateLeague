@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use App\Models\Scopes\LeagueScope;
 
+#[ScopedBy([LeagueScope::class])]
 class Team extends Model
 {
     use SoftDeletes;

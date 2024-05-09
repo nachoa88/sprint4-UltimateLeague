@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use App\Models\Scopes\LeagueScope;
+
+#[ScopedBy([LeagueScope::class])]
 class Game extends Model
 {
     protected $fillable = [

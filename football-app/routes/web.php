@@ -14,6 +14,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Added two routes to recover the teams of a league that have been deleted.
 Route::get('teams/deleted', [TeamsController::class, 'showDeleted'])->name('teams.deleted');
 Route::put('teams/{team}/restore', [TeamsController::class, 'restore'])->name('teams.restore');
+// Route for the select-league form, to store the league_id in the session.
+Route::post('/select-league', [LeagueController::class, 'selectLeague'])->name('select-league');
 
 // With resouce method, we can create all the routes for the controller with one line of code.
 Route::resource('teams', TeamsController::class);
