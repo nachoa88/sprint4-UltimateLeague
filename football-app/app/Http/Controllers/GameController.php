@@ -31,9 +31,10 @@ class GameController extends Controller
             ->orderBy('matchweek')
             ->get()
             ->groupBy('matchweek');
-
+        // We'll also pass the leagues to scope the games.
+        $leagues = $this->leagueService->getAllLeagues();
         // We return the view with the games data.
-        return view('games.games', ['games' => $games]);
+        return view('games.games', ['games' => $games, 'leagues' => $leagues]);
     }
 
     public function create()

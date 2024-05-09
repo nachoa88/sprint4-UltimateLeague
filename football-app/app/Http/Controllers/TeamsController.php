@@ -25,8 +25,11 @@ class TeamsController extends Controller
         $teams = Team::with('league')->get();
         // For example we'll sort the teams by name.
         $teams = $teams->sortBy('name');
+        // Pass the leagues to scope the teams.
+        $leagues = $this->leagueService->getAllLeagues();
+
         // As the teams file is inside the view/teams folder, we need to specify the path to the view.
-        return view('teams.teams', ['teams' => $teams]);
+        return view('teams.teams', ['teams' => $teams, 'leagues' => $leagues]);
     }
 
     public function create()

@@ -6,6 +6,7 @@ use App\Models\League;
 // use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\StoreLeagueRequest;
+use App\Http\Requests\SelectLeagueRequest;
 
 class LeagueController extends Controller
 {
@@ -76,5 +77,17 @@ class LeagueController extends Controller
         }
 
         return redirect()->route('leagues.index');
+    }
+
+    // We use the SelectLeagueRequest to validate the incoming request.
+    public function selectLeague(SelectLeagueRequest $request)
+    {
+        // We'll get the league_id from the validated request.
+        $league_id = $request->validated()['league_id'];
+        // We'll store the league_id in the session.
+        session(['league_id' => $league_id]);
+
+        // back() will redirect the user back to the previous page, reloading the actual page of the form.
+        return back();
     }
 }
