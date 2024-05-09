@@ -10,7 +10,6 @@ use App\Http\Requests\SelectLeagueRequest;
 
 class LeagueController extends Controller
 {
-
     public function index()
     {
         $leagues = League::all();

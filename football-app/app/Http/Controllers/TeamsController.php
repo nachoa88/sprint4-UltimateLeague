@@ -10,32 +10,23 @@ use Illuminate\Support\Facades\Storage;
 
 class TeamsController extends Controller
 {
-    // We create a variable for the leageService, so we can use it in the controller's functions.
-    protected $leagueService;
-    // The constructor will inject the LeagueService into the controller so code is more DRY.
-    public function __construct(LeagueService $leagueService)
-    {
-        $this->leagueService = $leagueService;
-        // Here goes middleware for authentication?
-    }
-
-    public function index()
+    public function index(LeagueService $leagueService)
     {
         // Team::all() gets all the teams with their leagues.
         $teams = Team::with('league')->get();
         // For example we'll sort the teams by name.
         $teams = $teams->sortBy('name');
         // Pass the leagues to scope the teams.
-        $leagues = $this->leagueService->getAllLeagues();
+        $leagues = $leagueService->getAllLeagues();
 
         // As the teams file is inside the view/teams folder, we need to specify the path to the view.
         return view('teams.teams', ['teams' => $teams, 'leagues' => $leagues]);
     }
 
-    public function create()
+    public function create(LeagueService $leagueService)
     {
         // As we need the Leagues to select when creating a new team, we use a service function to import them.
-        $leagues = $this->leagueService->getAllLeagues();
+        $leagues = $leagueService->getAllLeagues();
         // Just show the create view, then store will be called.
         return view('teams.create', ['leagues' => $leagues]);
     }
@@ -62,10 +53,10 @@ class TeamsController extends Controller
         return view('teams.show', ['team' => $team]);
     }
 
-    public function edit(Team $team)
+    public function edit(Team $team, LeagueService $leagueService)
     {
         // As we need the Leagues to select when editing a new team, we use a service function to import them.
-        $leagues = $this->leagueService->getAllLeagues();
+        $leagues = $leagueService->getAllLeagues();
         // Edit will show the edit view with the team data, then update will be called.
         return view('teams.edit', ['team' => $team, 'leagues' => $leagues]);
     }
