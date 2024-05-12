@@ -8,9 +8,22 @@ use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\LeagueController;
 
-// IMPORTANT: The specific routes must go before than the resource one.
 // I've added the HomeController to return the view instead of the anonymous function.
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// IMPORTANT: The specific routes must go before than the resource one.
+
+
 
 // Added two routes to recover the teams of a league that have been deleted.
 Route::get('teams/deleted', [TeamsController::class, 'showDeleted'])->name('teams.deleted');
@@ -23,21 +36,7 @@ Route::resource('teams', TeamsController::class);
 Route::resource('games', GameController::class);
 Route::resource('leagues', LeagueController::class);
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
+// Added the auth routes to the web.php file.
 require __DIR__.'/auth.php';
 
 
