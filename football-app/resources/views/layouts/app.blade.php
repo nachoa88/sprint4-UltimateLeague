@@ -26,7 +26,7 @@
         @include('layouts.navigation')
 
         <!-- Page Content -->
-        <main class="flex-grow flex items-center justify-center py-12">
+        <main class="flex-grow flex items-center justify-center py-10">
             {{ $slot }}
         </main>
 

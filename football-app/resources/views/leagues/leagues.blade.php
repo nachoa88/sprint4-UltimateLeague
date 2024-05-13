@@ -1,24 +1,17 @@
 <x-app-layout>
     <div class="w-full sm:max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="p-6 bg-sky-900 overflow-hidden shadow-sm sm:rounded-lg">
-            <h1 class="mb-6 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
-                Get started creating a <span class="text-teal-300">New League</span></h1>
-            <p class="text-lg font-normal text-gray-200 lg:text-xl">Do you want to create a new League? With League
-                Manager is
-                possible, just press the button and follow the instructions.</p>
-            <a href="{{ route('leagues.create') }}"
-                class="relative inline-flex items-center justify-center p-0.5 my-4 me-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-400">
-                <span
-                    class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                    Create a League
-                </span>
-            </a>
+            @auth
+                <x-welcome-message title="Get started creating a <span class='text-teal-300'>New League</span>"
+                    subtitle="Do you want to create a new league? With Ultimate League is possible, just press the button and follow the instructions." />
+                <x-a-button-green route="leagues.create" label="Create League" />
+            @endauth
+            @guest
+                <x-welcome-message title="Get started! Have a look at the <span class='text-teal-300'>Leagues List.</span>"
+                    subtitle="Do you want to create your own league? With Ultimate League is possible, just register and follow the instructions." />
+            @endguest
 
-            <h1 class="my-6 text-3xl font-extrabold leading-none tracking-tight text-white md:text-4xl lg:text-5xl">Teams
-                List
-            </h1>
-
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
                 @if (session('error'))
                     <div class="mb-2 text-red-500 text-lg text-center">{{ session('error') }}</div>
                 @endif

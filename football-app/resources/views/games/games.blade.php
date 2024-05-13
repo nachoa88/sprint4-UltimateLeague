@@ -1,27 +1,22 @@
 <x-app-layout>
     <div class="w-full sm:max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="p-6 bg-sky-900 overflow-hidden shadow-sm sm:rounded-lg">
-            <h1 class="mb-6 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
-                Get started creating a <span class="text-teal-300">New Game</span></h1>
-            <p class="text-lg font-normal text-gray-200 lg:text-xl">Do you want to create a new fixture? With League
-                Manager is
-                possible, just press the button and follow the instructions.</p>
-            <a href="{{ route('games.create') }}"
-                class="relative inline-flex items-center justify-center p-0.5 my-4 me-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-400">
-                <span
-                    class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                    Create a Game
-                </span>
-            </a>
+            @auth
+                <x-welcome-message title="Get started creating a <span class='text-teal-300'>New Game</span>"
+                    subtitle="Do you want to create a new game? With Ultimate League is possible, just press the button and follow the instructions." />
+                <x-a-button-green route="games.create" label="Create Game" />
+            @endauth
+            @guest
+                <x-welcome-message title="Get started! Have a look at the <span class='text-teal-300'>Games List.</span>"
+                    subtitle="Do you want to create your own games? With Ultimate League is possible, just register and follow the instructions." />
+            @endguest
 
-            <h1 class="my-6 text-3xl font-extrabold leading-none tracking-tight text-white md:text-4xl lg:text-5xl">Games
-                List</h1>
             <!-- Select League Dropdown -->
-            <div class="flex items-center justify-center">
+            <div class="flex items-center justify-center p-4">
                 <form method="POST" action="{{ route('select-league') }}" class="flex flex-row items-center">
                     @csrf
                     <select name="league_id"
-                        class="px-3 py-2 mr-4 text-white bg-gray-900 border border-green-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+                        class="px-3 py-1 mr-4 text-white bg-gray-900 border border-green-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
                         @foreach ($leagues as $league)
                             <option value="{{ $league->id }}"
                                 {{ session('league_id') == $league->id ? 'selected' : '' }}>
@@ -29,13 +24,9 @@
                             </option>
                         @endforeach
                     </select>
-                    <button type="submit"
-                        class="relative inline-flex items-center justify-center p-0.5 my-4 me-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-400">
-                        <span
-                            class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                            Select League
-                        </span>
-                    </button>
+                    <x-button-green>
+                        {{ __('Select League') }}
+                    </x-button-green>
                 </form>
             </div>
 

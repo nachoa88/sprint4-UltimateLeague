@@ -12,11 +12,6 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('teams.index')" :active="request()->routeIs('teams*')">
                         {{ __('Teams') }}
                     </x-nav-link>
@@ -39,19 +34,19 @@
                 @auth
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button
-                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                <div>{{ Auth::user()->name }}</div>
-
-                                <div class="ms-1">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+                            <x-button-green class="w-auto my-2">
+                                <div class="flex items-center ms-1">
+                                    {{ Auth::user()->name }}
+                                    <div class="ms-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
                                 </div>
-                            </button>
+                            </x-button-green>
                         </x-slot>
 
                         <x-slot name="content">
@@ -73,26 +68,15 @@
                 @endauth
                 <!-- Guest user login and register -->
                 @guest
-
-                    <a href="{{ route('login') }}"
-                        class="relative inline-flex items-center justify-center w-24 p-0.5 my-4 me-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-400">
-                        <span
-                            class="relative w-24 px-5 py-1.5 transition-all ease-in duration-75 bg-gray-900 rounded-md group-hover:bg-opacity-0 text-center">
-                            Log in</span>
-                    </a>
-                    <a href="{{ route('register') }}"
-                        class="relative inline-flex items-center justify-center w-24 p-0.5 my-4 me-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-red-400 to-blue-600 group-hover:from-red-400 group-hover:to-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-400">
-                        <span
-                            class="relative w-24 px-5 py-1.5 transition-all ease-in duration-75 bg-gray-900 rounded-md group-hover:bg-opacity-0 text-center">
-                            Register</span>
-                    </a>
+                    <x-a-button-green route="login" label="Log in" class="mr-2"/>
+                    <x-a-button-red route="register" label="Register" />
                 @endguest
             </div>
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                    class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-teal-500 hover:bg-teal-500 hover:text-white focus:outline-none focus:bg-teal-500 focus:text-white transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -108,8 +92,14 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('teams.index')" :active="request()->routeIs('teams*')">
+                {{ __('Teams') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('games.index')" :active="request()->routeIs('games*')">
+                {{ __('Games') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('leagues.index')" :active="request()->routeIs('leagues*')">
+                {{ __('Leagues') }}
             </x-responsive-nav-link>
         </div>
 
