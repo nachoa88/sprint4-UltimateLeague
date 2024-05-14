@@ -9,6 +9,8 @@ Afegit seeders per poder fer les proves de l'aplicació amb el command: `php art
 
 ## Nivell 2 - Sistema d'autenticació Breeze
 1) Instal·lat Breeze utilitzant PHP composer: `composer require laravel/breeze --dev` i definint el base del projecte amb artisan: `php artisan breeze:install`. I per ùltim `npm install`, i si volem executar l'app, hem de fer començar el servidor de Vite: `npm run dev` i desprès `php artisan serve`. En aquest cas també he fet servir `npm run build` per crear una build i no haver de executar el servidor Vite cada vegada.
+2) Creació d'una view en blade per tractar l'error 404 i afegit en el fixer `bootstrap/app.php` una excepció per enviar la vista.
 
-## Nivell 3 - LiveWire
-1) ...
+## Nivell 3 - LiveWire & Capa de servei.
+1) LiveWire queda pendent per fer.
+2) Capa de servei creada per les Lligues i equips.
