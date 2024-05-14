@@ -12,10 +12,8 @@ class TeamsController extends Controller
 {
     public function index(LeagueService $leagueService)
     {
-        // Team::all() gets all the teams with their leagues.
-        $teams = Team::with('league')->get();
-        // For example we'll sort the teams by name.
-        $teams = $teams->sortBy('name');
+        // Team::with('league') gets all the teams with their leagues, added ordered by name and paginated.
+        $teams = Team::with('league')->orderBy('name')->paginate(10);
         // Pass the leagues to scope the teams.
         $leagues = $leagueService->getAllLeagues();
 

@@ -1,8 +1,8 @@
 <x-app-layout>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <div class="w-full sm:max-w-md mx-auto sm:px-6 lg:px-8">
+        <div class="p-6 bg-sky-900 overflow-hidden shadow-sm sm:rounded-lg">
 
-            <div class="mb-4 text-sm text-gray-600">
+            <div class="mb-4 text-md text-white">
                 {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
             </div>
 
@@ -13,17 +13,17 @@
                 @csrf
 
                 <!-- Email Address -->
-                <div>
-                    <x-input-label for="email" :value="__('Email')" />
+                <div class="relative z-0 w-full mb-5 group">
                     <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                         required autofocus />
+                    <x-input-label for="email" :value="__('Email')" />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
-                    <x-primary-button>
+                    <x-button-green>
                         {{ __('Email Password Reset Link') }}
-                    </x-primary-button>
+                    </x-button-green>
                 </div>
             </form>
         </div>

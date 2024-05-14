@@ -79,6 +79,10 @@
                     </tbody>
                 </table>
             </div>
+            <!-- Pagination -->
+            <div class="flex items-center justify-center p-4">
+                {!! $leagues->withQueryString()->links('components.pagination') !!}
+            </div>
         </div>
     </div>
 </x-app-layout>

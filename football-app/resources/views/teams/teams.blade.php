@@ -103,6 +103,10 @@
                     </tbody>
                 </table>
             </div>
+            <!-- Pagination -->
+            <div class="flex items-center justify-center p-4">
+                {!! $teams->withQueryString()->links('components.pagination') !!}
+            </div>
             @auth
                 <x-subtitle-message subtitle="Recover a Team"
                     text="Have you deleted a team by accident? With Ultimate League you can recover the team just pressing the button and following the instructions." />
