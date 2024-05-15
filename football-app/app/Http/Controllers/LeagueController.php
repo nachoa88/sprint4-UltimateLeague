@@ -12,7 +12,7 @@ class LeagueController extends Controller
 {
     public function index()
     {
-        $leagues = League::all();
+        $leagues = League::paginate(10);
 
         return view('leagues.leagues', ['leagues' => $leagues]);
     }
