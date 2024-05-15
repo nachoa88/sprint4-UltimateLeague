@@ -1,9 +1,10 @@
 <x-app-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
     <div class="w-full sm:max-w-md mx-auto sm:px-6 lg:px-8">
         <div class="p-6 bg-sky-900 overflow-hidden shadow-sm sm:rounded-lg">
+            
+            <!-- Session Status -->
+            <x-auth-session-status class="mb-4" :status="session('status')" />
+
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
@@ -26,7 +27,8 @@
                 <!-- Remember Me -->
                 <div class="block">
                     <label for="remember_me" class="inline-flex items-center">
-                        <input id="remember_me" type="checkbox" class="rounded border-sky-500 text-teal-300 shadow-sm focus:ring-teal-300" name="remember">
+                        <input id="remember_me" type="checkbox"
+                            class="rounded border-sky-500 text-teal-300 shadow-sm focus:ring-teal-300" name="remember">
                         <span class="ms-2 text-sm text-gray-200">{{ __('Remember me') }}</span>
                     </label>
                 </div>

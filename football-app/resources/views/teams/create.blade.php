@@ -113,8 +113,8 @@
                         @enderror
                     </div>
                     <!-- Submit & Return buttons -->
-                    <div class="flex justify-center">
-                        <x-a-button-red class="me-3" route="teams.index" label="Return" />
+                    <div class="flex justify-center space-x-6">
+                        <x-a-button-red route="teams.index" label="Return" />
                         <x-button-green>{{ __('Create Team') }}</x-button-green>
                     </div>
                 </form>
