@@ -8,6 +8,7 @@ use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\LeagueController;
 
+
 /* IMPORTANT: Laravel interprets routes from top to bottom. When it sees for example teams/{team}, 
 {team} is the id and if this route is before teams/create, it will iterpret "create" as a team ID
 and tries to match it to the teams/{team} route. So specific routes should be before.*/
@@ -21,7 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
+Route::middleware(['auth', 'verified'])->group(function () {
     // Added two routes to recover the teams of a league that have been deleted.
     Route::get('teams/deleted', [TeamsController::class, 'showDeleted'])->name('teams.deleted');
     Route::put('teams/{team}/restore', [TeamsController::class, 'restore'])->name('teams.restore');
@@ -54,10 +57,6 @@ Route::get('games', [GameController::class, 'index'])->name('games.index');
 Route::get('games/{game}', [GameController::class, 'show'])->name('games.show');
 Route::get('leagues', [LeagueController::class, 'index'])->name('leagues.index');
 Route::get('leagues/{league}', [LeagueController::class, 'show'])->name('leagues.show');
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Added the auth routes to the web.php file.
 require __DIR__ . '/auth.php';

@@ -118,8 +118,8 @@
                         </div>
                     </div>
                     <!-- Submit & Return buttons -->
-                    <div class="flex justify-center">
-                        <x-a-button-red class="me-3" route="games.index" label="Return" />
+                    <div class="flex justify-center space-x-6">
+                        <x-a-button-red route="games.index" label="Return" />
                         <x-button-green>{{ __('Create Game') }}</x-button-green>
                     </div>
                 </form>

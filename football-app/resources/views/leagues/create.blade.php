@@ -59,8 +59,8 @@
                         </div>
                     </div>
                     <!-- Submit & Return buttons -->
-                    <div class="flex justify-center">
-                        <x-a-button-red class="me-3" route="leagues.index" label="Return" />
+                    <div class="flex justify-center space-x-6">
+                        <x-a-button-red route="leagues.index" label="Return" />
                         <x-button-green>{{ __('Create League') }}</x-button-green>
                     </div>
                 </form>

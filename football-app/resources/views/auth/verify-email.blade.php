@@ -1,10 +1,10 @@
 <x-app-layout>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-
-            <div class="mb-4 text-sm text-gray-600">
-                {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-            </div>
+    <div class="w-full sm:max-w-xl mx-auto sm:px-6 lg:px-8">
+        <div class="p-6 bg-sky-900 overflow-hidden shadow-sm sm:rounded-lg">
+            <x-welcome-message 
+            title="Welcome to <span class='text-teal-300'>Ultimate League!</span>"
+            titleSize="text-2xl md:text-3xl lg:text-4xl" 
+            subtitle="Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another." />
 
             @if (session('status') == 'verification-link-sent')
                 <div class="mb-4 font-medium text-sm text-green-600">
@@ -12,24 +12,23 @@
                 </div>
             @endif
 
-            <div class="mt-4 flex items-center justify-between">
+            <div class="mt-4 flex items-center justify-between space-x-4">
                 <form method="POST" action="{{ route('verification.send') }}">
                     @csrf
 
                     <div>
-                        <x-primary-button>
+                        <x-button-green class="w-60">
                             {{ __('Resend Verification Email') }}
-                        </x-primary-button>
+                        </x-button-green>
                     </div>
                 </form>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <button type="submit"
-                        class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <x-button-red>
                         {{ __('Log Out') }}
-                    </button>
+                    </x-button-red>
                 </form>
             </div>
         </div>

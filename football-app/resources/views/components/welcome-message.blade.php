@@ -1,6 +1,6 @@
-@props(['title', 'subtitle' => '', 'registerMessage' => ''])
+@props(['title', 'subtitle' => '', 'registerMessage' => '', 'titleSize' => 'text-4xl md:text-5xl lg:text-6xl'])
 
-<h1 class="mb-6 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
+<h1 class="mb-6 font-extrabold leading-none tracking-tight text-white {{ $titleSize }}">
     <!-- The !! work to render the HTML tags in the title, in this case span tag -->
     {!! $title !!}
 </h1>
