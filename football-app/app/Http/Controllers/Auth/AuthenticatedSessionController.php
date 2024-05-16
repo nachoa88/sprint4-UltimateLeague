@@ -28,7 +28,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('profile.edit', absolute: false));
+        // Check if user has verified email.
+        $user = Auth::user();
+        if ($user->hasVerifiedEmail()) {
+            return redirect()->intended(route('home', absolute: false));
+        };
+
+        return redirect()->route('verification.notice');
     }
 
     /**
