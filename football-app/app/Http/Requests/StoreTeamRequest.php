@@ -32,15 +32,15 @@ class StoreTeamRequest extends FormRequest
             'league_id' => 'nullable|exists:leagues,id',
             // The name must be unique in the teams table, but we need to ignore the current team when updating it.
             'name' => ['required', Rule::unique('teams')->ignore($teamId)],
-            'city' => 'required',
-            'country' => 'required',
+            'city' => 'required|string', // Maybe later I could use a selector.
+            'country' => 'required|string',
             'founded' => 'nullable|integer|between:1800,' . date('Y'),
             'stadium_name' => 'nullable|string',
             'stadium_capacity' => 'nullable|integer|min:500',
         ];
 
         if ($this->isMethod('post')) {
-            $rules['logo'] = 'required|image|max:500';
+            $rules['logo'] = 'required|image|max:500|mimes:jpeg,png,jpg,svg';
         }
 
         return $rules;

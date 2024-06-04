@@ -1,4 +1,4 @@
-# Sprint 3 - Laravel bàsics
+# Sprint 4 - Laravel bàsics
 Utilitzat `docker compose` command amb el fitxer `docker-compose.yml` i un `Dockerfile` personalitzat per crear els contenidors de PHP i Laravel i el de MySQL amb les conexions corresponents. Instal·lat Laravel amb PHP composer: `composer create-project laravel/laravel football-app`.
 
 Afegit seeders per poder fer les proves de l'aplicació amb el command: `php artisan db:seed`.
