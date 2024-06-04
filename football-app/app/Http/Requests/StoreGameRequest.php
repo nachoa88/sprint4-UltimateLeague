@@ -34,7 +34,7 @@ class StoreGameRequest extends FormRequest
             // I think it's not necessary because form html already has the type="number" attribute and "required" camp.
             'home_team_goals' => 'required|integer',
             'away_team_goals' => 'required|integer',
-            'matchweek' => 'integer',
+            'matchweek' => 'integer|min:1',
         ];
     }
 

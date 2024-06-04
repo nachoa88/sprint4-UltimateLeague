@@ -53,12 +53,12 @@
                                 <td class="px-6 py-4 text-base">
                                     <div class="flex space-x-4 justify-center">
                                         <a href="{{ route('leagues.show', $league->id) }}"
-                                            class="text-blue-200 hover:text-blue-400">
+                                            class="text-blue-200 hover:text-blue-400" title="View Details">
                                             <i
                                                 class="fa-solid fa-magnifying-glass fa-xl hover:scale-150 transition-transform duration-200"></i>
                                         </a>
                                         <a href="{{ route('leagues.edit', $league->id) }}"
-                                            class="text-amber-400 hover:text-amber-600">
+                                            class="text-amber-400 hover:text-amber-600" title="Edit League">
                                             <i
                                                 class="fa-regular fa-pen-to-square fa-xl hover:scale-150 transition-transform duration-200"></i>
                                         </a>
@@ -67,7 +67,7 @@
                                             @method('DELETE')
                                             <button type="submit"
                                                 onclick="return confirm('Are you sure you want to delete the league?')"
-                                                class="text-red-400 hover:text-red-600">
+                                                class="text-red-400 hover:text-red-600" title="Delete League">
                                                 <i
                                                     class="fa-regular fa-trash-can fa-xl hover:scale-150 transition-transform duration-200"></i>
                                             </button>

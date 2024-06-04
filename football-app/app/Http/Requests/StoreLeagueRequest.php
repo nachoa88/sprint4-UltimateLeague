@@ -30,9 +30,9 @@ class StoreLeagueRequest extends FormRequest
         return [
             // The name must be unique in the leagues table, but we need to ignore the current league when updating it.
             'name' => ['required', Rule::unique('leagues')->ignore($leagueId)],
-            'country' => 'required',
-            'level' => 'required|integer',
-            'teams_number' => 'required|integer',
+            'country' => 'required|string', // Maybe later i could use a selector.
+            'level' => 'required|integer|min:1|max:10',
+            'teams_number' => 'required|integer|min:2|max:40',
         ];
     }
 
