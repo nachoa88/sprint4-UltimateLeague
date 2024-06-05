@@ -1,7 +1,7 @@
 # Sprint 4 - Laravel bàsics
 Utilitzat `docker compose` command amb el fitxer `docker-compose.yml` i un `Dockerfile` personalitzat per crear els contenidors de PHP i Laravel i el de MySQL amb les conexions corresponents. Instal·lat Laravel amb PHP composer: `composer create-project laravel/laravel football-app`.
 
-Afegit seeders per poder fer les proves de l'aplicació amb el command: `php artisan db:seed`.
+Afegit seeders per poder fer les proves de l'aplicació amb el command: `php artisan db:seed`. Si no es veuen els logos al clonar el repo, es perque s'ha de tornar a executar el symbolic link, primer esborrar l'antic amb `rm public/storage` i desprès amb artisan tornar a crear-lo amb `php artisan storage:link`. 
 
 ### Laravel MVC
 ## Nivell 1 - Funcionalitats bàsiques
@@ -13,4 +13,4 @@ Afegit seeders per poder fer les proves de l'aplicació amb el command: `php art
 
 ## Nivell 3 - LiveWire & Capa de servei.
 1) LiveWire queda pendent per fer.
-2) Capa de servei creada per les Lligues i equips.
+2) Capa de servei creada per les Lligues i equips, pendent per millorar.
