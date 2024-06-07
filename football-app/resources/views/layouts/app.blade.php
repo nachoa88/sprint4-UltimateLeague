@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-sky-950">
     <div class="flex flex-col min-h-screen bg-gray-900">
         <!-- Navbar -->
         @include('layouts.navigation')
