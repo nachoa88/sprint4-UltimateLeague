@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="w-full sm:max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="p-6 bg-sky-900 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-3 sm:p-6 bg-sky-900 overflow-hidden shadow-sm sm:rounded-lg">
             @auth
                 <x-welcome-message title="Get started creating a <span class='text-teal-300'>New Team</span>"
                     subtitle="Do you want to create a new team? With Ultimate League is possible, just press the button and follow the instructions." />
@@ -30,23 +30,23 @@
                 </form>
             </div>
 
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="relative overflow-x-auto shadow-md rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-400">
                     <thead class="text-s text-gray-200 uppercase bg-sky-950">
                         <tr>
-                            <th scope="col" class="px-1 py-3 text-center">
+                            <th scope="col" class="px-3 sm:px-1 py-3 text-center">
                                 Logo
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-3 sm:px-6 py-3">
                                 Name
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-3 sm:px-6 py-3 hidden sm:table-cell">
                                 League
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-3 sm:px-6 py-3 hidden sm:table-cell">
                                 Stadium
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center">
+                            <th scope="col" class="px-3 sm:px-6 py-3 text-center">
                                 Actions
                             </th>
                         </tr>
@@ -54,27 +54,27 @@
                     <tbody>
                         @foreach ($teams as $team)
                             <tr class="bg-cyan-700 border-b border-cyan-950 hover:bg-cyan-800">
-                                <td class="px-1 py-3 ">
+                                <td class="px-3 sm:px-1 py-3">
                                     <div class="flex items-center justify-center">
                                         <img class="w-10 h-10" src="{{ asset('storage/' . $team->logo) }}"
                                             alt="{{ $team->name }} logo">
                                     </div>
                                 </td>
                                 <th scope="row"
-                                    class="flex flex-col items-start px-6 py-4 text-white whitespace-nowrap">
+                                    class="px-3 sm:px-6 py-4 text-white">
                                     <div class="text-base font-semibold">{{ $team->name }}</div>
                                     <div class="font-normal text-gray-300">{{ $team->city }}</div>
                                 </th>
-                                <td class="px-6 py-4 text-white text-base font-semibold">
+                                <td class="px-3 sm:px-6 py-4 text-white text-base font-semibold hidden sm:table-cell">
                                     {{ $team->league->name ?? 'N/A' }}
                                 </td>
-                                <td class="px-6 py-4 text-white text-base font-semibold">
+                                <td class="px-3 sm:px-6 py-4 text-white text-base font-semibold hidden sm:table-cell">
                                     <div class="text-base font-semibold">{{ $team->stadium_name }}</div>
                                     <div class="font-normal text-gray-300">
                                         {{ $team->stadium_capacity ? 'Capacity: ' . $team->stadium_capacity : '' }}
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 text-base">
+                                <td class="px-3 sm:px-6 py-4 text-base">
                                     <div class="flex space-x-4 justify-center">
                                         <a href="{{ route('teams.show', $team->id) }}"
                                             class="text-blue-200 hover:text-blue-400" title="View Details">
