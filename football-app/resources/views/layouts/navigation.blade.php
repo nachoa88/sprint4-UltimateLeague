@@ -108,8 +108,8 @@
             <!-- Authenticated user options -->
             @auth
                 <div class="px-4">
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                    <div class="font-semibold text-xs text-teal-300 uppercase tracking-widest">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-400">{{ Auth::user()->email }}</div>
                 </div>
 
                 <div class="mt-3 space-y-1">

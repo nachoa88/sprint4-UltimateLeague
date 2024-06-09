@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-// use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\LeagueSeeder;
 use Database\Seeders\TeamSeeder;
@@ -17,12 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-        /*
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);*/
+            'name' => 'TestUser',
+            'email' => 'test@mail.com',
+            'password' => '123456789',
+        ]);
+
         $this->call([
             LeagueSeeder::class,
             TeamSeeder::class,
