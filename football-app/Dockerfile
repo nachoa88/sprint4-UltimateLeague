@@ -11,13 +11,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip pdo pdo_mysql
 
 # Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 # Copy existing application directory contents
 COPY . /var/www/html
-
-# Install PHP dependencies
-RUN composer install
 
 # Set permissions for Apache
 RUN chown -R www-data:www-data /var/www/html
@@ -39,13 +36,23 @@ RUN a2enmod rewrite
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs npm
 
-# Install NPM dependencies
-RUN npm install
+# Create a user with UID and GID of 1000 (1000 is my current user UID and GID) in order to avoid permission issues
+RUN groupadd -g 1000 hostgroup && \
+    useradd -u 1000 -g hostgroup -m hostuser
 
-# Build frontend assets
-RUN npm run build
+# Set permissions for the application directory
+RUN chown -R hostuser:hostgroup /var/www/html
 
-# Create storage symlink
-RUN php artisan storage:link
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/
+
+# Make entrypoint script executable
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Switch to the new user
+USER hostuser
+
+# Set entrypoint
+ENTRYPOINT ["entrypoint.sh"]
 
 CMD ["apache2-foreground"]

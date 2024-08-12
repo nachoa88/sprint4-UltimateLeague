@@ -1,7 +1,9 @@
 # Sprint 4 - Laravel bàsics
 Utilitzat `docker compose` command amb el fitxer `docker-compose.yml` i un `Dockerfile` personalitzat per crear els contenidors de PHP i Laravel i el de MySQL amb les conexions corresponents. Instal·lat Laravel amb PHP composer: `composer create-project laravel/laravel football-app`.
 
-Afegit seeders per poder fer les proves de l'aplicació amb el command: `php artisan db:seed`. Si no es veuen els logos al clonar el repo, es perque s'ha de tornar a executar el symbolic link, primer esborrar l'antic amb `rm public/storage` i desprès amb artisan tornar a crear-lo amb `php artisan storage:link`. 
+Creant el build des de el `Dockerfile` actual s'executarà també el fitxer `entrypoint.sh` que contè les instruccions inicials per poder tenir el projecte funcionant, només cladrà fer un `php artisan migrate` i `php artisan db:seed` per tenir-lo "out of the box". 
+
+Si no es veuen els logos al clonar el repo, es perque s'ha de tornar a executar el symbolic link, primer esborrar l'antic amb `rm public/storage` i desprès amb artisan tornar a crear-lo amb `php artisan storage:link`. 
 
 ### Laravel MVC
 ## Nivell 1 - Funcionalitats bàsiques
